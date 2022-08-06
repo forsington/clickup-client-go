@@ -347,6 +347,7 @@ type TaskRequest struct {
 	DueDateTime   bool     `json:"due_date_time,omitempty"`
 	StartDate     int      `json:"start_date,omitempty"`
 	StartDateTime bool     `json:"start_date_time,omitempty"`
+	Assignees     []int    `json:"assignees,omitempty"`
 }
 
 // CreateTask inserts a new task into the specified list.
@@ -376,15 +377,21 @@ func (c *Client) CreateTask(ctx context.Context, listID string, task TaskRequest
 }
 
 type TaskUpdateRequest struct {
-	ID            string   `json:"id"`
-	Name          string   `json:"name"`
-	Description   string   `json:"description,omitempty"`
-	Tags          []string `json:"tags,omitempty"`
-	Status        string   `json:"status,omitempty"`
-	DueDate       int      `json:"due_date,omitempty"`
-	DueDateTime   bool     `json:"due_date_time,omitempty"`
-	StartDate     int      `json:"start_date,omitempty"`
-	StartDateTime bool     `json:"start_date_time,omitempty"`
+	ID            string                 `json:"id"`
+	Name          string                 `json:"name"`
+	Description   string                 `json:"description,omitempty"`
+	Tags          []string               `json:"tags,omitempty"`
+	Status        string                 `json:"status,omitempty"`
+	DueDate       int                    `json:"due_date,omitempty"`
+	DueDateTime   bool                   `json:"due_date_time,omitempty"`
+	StartDate     int                    `json:"start_date,omitempty"`
+	StartDateTime bool                   `json:"start_date_time,omitempty"`
+	Assignees     UpdateAssigneesRequest `json:"assignees,omitempty"`
+}
+
+type UpdateAssigneesRequest struct {
+	Add []int `json:"add,omitempty"`
+	Rem []int `json:"rem,omitempty"`
 }
 
 // UpdateTask changes an existing task.
