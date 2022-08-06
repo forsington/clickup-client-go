@@ -378,7 +378,7 @@ func (c *Client) CreateTask(ctx context.Context, listID string, task TaskRequest
 
 type TaskUpdateRequest struct {
 	ID            string                 `json:"id"`
-	Name          string                 `json:"name"`
+	Name          string                 `json:"name,omitempty"`
 	Description   string                 `json:"description,omitempty"`
 	Tags          []string               `json:"tags,omitempty"`
 	Status        string                 `json:"status,omitempty"`
